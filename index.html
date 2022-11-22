@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tic Tac Toe</title>
+</head>
+<body>
+  <div class="score-board">
+    <span id="asd">Score</span>
+    <div class="player-score">
+      <span id="x-name">X</span>
+      <input id="x-score" type="number" value="0" readonly />
+    </div>
+    <div class="player-score">
+      <span id="o-name">O</span>
+      <input id="o-score" type="number" value="0" readonly />
+    </div>
+  </div>
+  <div class="board" data-board>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+  </div>
+  <div class="end-game-modal" data-end-game-modal>
+    <span id="end-game-message"></span>
+    <button id="new-game-btn">reset</button>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

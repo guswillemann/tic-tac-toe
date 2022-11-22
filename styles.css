@@ -1,0 +1,153 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 13px;
+  font-family: sans-serif;
+
+  --cell-size: 10rem;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.score-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  gap: 2rem;
+}
+
+.score-board > span {
+  grid-column: 1 / 3;
+}
+
+.player-score > span {
+  display: block;
+}
+
+.player-score > input {
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 6rem;
+  border-radius: 0.5rem;
+  text-align: end;
+
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.player-score > input::-webkit-outer-spin-button,
+.player-score > input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  place-content: center;
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid white;
+  position: relative;
+  cursor: pointer;
+}
+
+.board .cell:is(.x, .o) {
+  cursor: not-allowed;
+}
+
+.board .cell:is(.x, .o)::before,
+.board .cell:is(.x, .o)::after {
+  transition: scale 200ms ease-in-out;
+}
+
+.cell::before,
+.cell::after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.board .cell:hover:not(.x):not(.o)::after,
+.board .cell:hover:not(.x):not(.o)::before {
+  scale: 0.5;
+}
+
+.board.o .cell:hover:not(.x):not(.o)::after,
+.cell.o::after {
+  border-radius: 99999px;
+  border: calc(0.1 * var(--cell-size)) solid white;
+  inset: calc(0.15 * var(--cell-size));
+}
+
+.board.x .cell:hover:not(.x):not(.o)::before,
+.board.x .cell:hover:not(.x):not(.o)::after,
+.cell.x::before,
+.cell.x::after {
+  width: calc(0.1 * var(--cell-size));
+  height: calc(0.90 * var(--cell-size));
+  background-color: white;
+  margin-inline: auto;
+  border-radius: calc(0.05 * var(--cell-size));
+  inset: calc(0.05 * var(--cell-size));
+}
+
+.board.x .cell:hover:not(.x):not(.o)::before,
+.cell.x::before {
+  rotate: -45deg;
+}
+
+.board.x .cell:hover:not(.x):not(.o)::after,
+.cell.x::after {
+  rotate: 45deg;
+}
+
+.cell:nth-child(n):nth-child(-n+3){
+  border-top-color: transparent;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left-color: transparent;
+}
+
+.cell:nth-child(n + 7):nth-child(-n + 9){
+  border-bottom-color: transparent;
+}
+
+.cell:nth-child(3n) {
+  border-right-color: transparent;
+}
+
+.end-game-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-content: center;
+  background-color: #000000DD;
+  font-size: 4rem;
+}
+
+.end-game-modal.show {
+  display: grid;
+}
